@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ottawa Groceries</title>
+        <link rel="stylesheet" type="text/css" href="styles.css" />
+        <script src="actions.js"></script>
+    </head>
+    <body>
+
+        <header>
+            <h1>Ottawa Groceries</h1>
+        </header>
+
+        <nav>
+            <a href="#" onclick="showSection('section1')">Customer</a>
+            <a href="#" onclick="showSection('section2')">Products</a>
+            <a href="#" onclick="showSection('section3'); displayCart();">Cart</a>
+        </nav>
+
+        <section id="section1">
+            <h2>Customer</h2>
+            <form action="submit_form.php" method="post">
+
+                <label>Select all that are true.</label>
+                <label>
+                    <input type="checkbox" name="option1" value="option1">You are vegetarian.
+                </label>
+                <label>
+                    <input type="checkbox" name="option2" value="option2">You are allergic to gluten.
+                </label>
+
+                <br>
+                <label for="selectMenu">Which do you prefer?</label>
+                <select id="selectMenu" name="selectedOption">
+                    <option value="option1">Organic products</option>
+                    <option value="option2">Non-organic products</option>
+                </select>
+
+                <br>
+                <input type="submit" value="Submit">
+            </form>
+        </section>
+
+        <section id="section2">
+            <h2>Products</h2>
+
+            <form id="groceryForm">
+                <h2>Select Grocery Items:</h2>
+
+                <label>
+                    <input type="checkbox" name="item[bananas][selected]" value="1" data-price="1.20">
+                    Bananas - $1.20
+                </label>
+                <label>
+                    Quantity:
+                    <input type="number" name="item[bananas][quantity]" value="1" min="1">
+                </label>
+
+                <label>
+                    <input type="checkbox" name="item[pasta][selected]" value="1" data-price="1.80">
+                    Pasta - $1.80
+                </label>
+                <label>
+                    Quantity:
+                    <input type="number" name="item[pasta][quantity]" value="1" min="1">
+                </label>
+
+                <label>
+                    <input type="checkbox" name="item[bread][selected]" value="1" data-price="2.00">
+                    Bread - $2.00
+                </label>
+                <label>
+                    Quantity:
+                    <input type="number" name="item[bread][quantity]" value="1" min="1">
+                </label>
+
+                <label>
+                    <input type="checkbox" name="item[tomatoes][selected]" value="1" data-price="2.20">
+                    Tomatoes - $2.20
+                </label>
+                <label>
+                    Quantity:
+                    <input type="number" name="item[tomatoes][quantity]" value="1" min="1">
+                </label>
+
+                <label>
+                    <input type="checkbox" name="item[apples][selected]" value="1" data-price="2.50">
+                    Apples - $2.50
+                </label>
+                <label>
+                    Quantity:
+                    <input type="number" name="item[apples][quantity]" value="1" min="1">
+                </label>
+
+                <label>
+                    <input type="checkbox" name="item[eggs][selected]" value="1" data-price="2.75">
+                    Eggs - $2.75
+                </label>
+                <label>
+                    Quantity:
+                    <input type="number" name="item[eggs][quantity]" value="1" min="1">
+                </label>
+
+                <label>
+                    <input type="checkbox" name="item[orange-juice][selected]" value="1" data-price="3.25">
+                    Orange Juice - $3.25
+                </label>
+                <label>
+                    Quantity:
+                    <input type="number" name="item[orange-juice][quantity]" value="1" min="1">
+                </label>
+
+                <label>
+                    <input type="checkbox" name="item[milk][selected]" value="1" data-price="3.50">
+                    Milk - $3.50
+                </label>
+                <label>
+                    Quantity:
+                    <input type="number" name="item[milk][quantity]" value="1" min="1">
+                </label>
+
+                <label>
+                    <input type="checkbox" name="item[cheese][selected]" value="1" data-price="4.50">
+                    Cheese - $4.50
+                </label>
+                <label>
+                    Quantity:
+                    <input type="number" name="item[cheese][quantity]" value="1" min="1">
+                </label>
+
+                <label>
+                    <input type="checkbox" name="item[chicken][selected]" value="1" data-price="7.00">
+                    Chicken - $7.00
+                </label>
+                <label>
+                    Quantity:
+                    <input type="number" name="item[chicken][quantity]" value="1" min="1">
+                </label>
+
+                <br>
+
+                <input type="submit" value="Add to cart">
+            </form>
+
+        </section>
+
+        <section id="section3">
+            <h2>Cart</h2>
+
+            <table id="shoppingCart">
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody id="shoppingCartBody"></tbody>
+            </table>
+
+            <div class="total">
+                <p>Total Cost: $0.00</p>
+            </div>
+
+        </section>
+
+    </body>
+</html>
