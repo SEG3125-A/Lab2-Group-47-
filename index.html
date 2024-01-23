@@ -21,26 +21,20 @@
 
         <section id="section1">
             <h2>Customer</h2>
-            <form action="submit_form.php" method="post">
+            <label>Select all that are true.</label>
+            <label>
+                <input type="checkbox" name="veggie" value="veggie">You are vegetarian.
+            </label>
+            <label>
+                <input type="checkbox" name="gluten" value="gluten">You are allergic to gluten.
+            </label>
+            <label>
+                <input type="checkbox" name="organic" value="organic">
+                You are only looking for organic products.
+            </label>
 
-                <label>Select all that are true.</label>
-                <label>
-                    <input type="checkbox" name="option1" value="option1">You are vegetarian.
-                </label>
-                <label>
-                    <input type="checkbox" name="option2" value="option2">You are allergic to gluten.
-                </label>
-
-                <br>
-                <label for="selectMenu">Which do you prefer?</label>
-                <select id="selectMenu" name="selectedOption">
-                    <option value="option1">Organic products</option>
-                    <option value="option2">Non-organic products</option>
-                </select>
-
-                <br>
-                <input type="submit" value="Submit">
-            </form>
+            <br>
+            <input type="submit" value="Submit" id="button1" onclick="showSection('section2')">
         </section>
 
         <section id="section2">
@@ -48,100 +42,188 @@
 
             <form id="groceryForm">
                 <h2>Select Grocery Items:</h2>
+                
+                <div id="organicData" style="display: none;">
+                    <label>
+                        <input type="checkbox" name="item[bananas][selected]" value="1" data-price="1.50">
+                        Organic Bananas - $1.50
+                    </label>
+                    <label>
+                        Quantity:
+                        <input type="number" name="item[bananas][quantity]" value="1" min="1">
+                    </label>
+                    <label>
+                        <input type="checkbox" name="item[bananas][selected]" value="1" data-price="1.90">
+                        Organic Apples - $1.90
+                    </label>
+                    <label>
+                        Quantity:
+                        <input type="number" name="item[bananas][quantity]" value="1" min="1">
+                    </label>
+                    <label>
+                        <input type="checkbox" name="item[bananas][selected]" value="1" data-price="2.20">
+                        Organic Grapes - $2.20
+                    </label>
+                    <label>
+                        Quantity:
+                        <input type="number" name="item[bananas][quantity]" value="1" min="1">
+                    </label>
+                </div>
 
-                <label>
-                    <input type="checkbox" name="item[bananas][selected]" value="1" data-price="1.20">
-                    Bananas - $1.20
-                </label>
-                <label>
-                    Quantity:
-                    <input type="number" name="item[bananas][quantity]" value="1" min="1">
-                </label>
+                <div id="non-organicData" style="display: block;">
+                    <label>
+                        <input type="checkbox" name="item[bananas][selected]" value="1" data-price="1.20">
+                        Bananas - $1.20
+                    </label>
+                    <label>
+                        Quantity:
+                        <input type="number" name="item[bananas][quantity]" value="1" min="1">
+                    <label>
+                    </label>
+                        <input type="checkbox" name="item[bananas][selected]" value="1" data-price="1.60">
+                        Apples - $1.60
+                    </label>
+                    <label>
+                        Quantity:
+                        <input type="number" name="item[bananas][quantity]" value="1" min="1">
+                    </label>
+                    <label>
+                        <input type="checkbox" name="item[bananas][selected]" value="1" data-price="2.00">
+                        Grapes - $2.00
+                    </label>
+                    <label>
+                        Quantity:
+                        <input type="number" name="item[bananas][quantity]" value="1" min="1">
+                    </label>
+                </div>
 
-                <label>
-                    <input type="checkbox" name="item[pasta][selected]" value="1" data-price="1.80">
-                    Pasta - $1.80
-                </label>
-                <label>
-                    Quantity:
-                    <input type="number" name="item[pasta][quantity]" value="1" min="1">
-                </label>
+                <div id="glutenData" style="display: none;">
+                    <label>
+                        <input type="checkbox" name="item[bananas][selected]" value="1" data-price="2.50">
+                        Gluten-Free Tortilla - $2.50
+                    </label>
+                    <label>
+                        Quantity:
+                        <input type="number" name="item[bananas][quantity]" value="1" min="1">
+                    </label>
+                    <label>
+                        <input type="checkbox" name="item[bananas][selected]" value="1" data-price="3.00">
+                        Gluten-Free Bread - $3.00
+                    </label>
+                    <label>
+                        Quantity:
+                        <input type="number" name="item[bananas][quantity]" value="1" min="1">
+                    </label>
+                    <label>
+                        <input type="checkbox" name="item[bananas][selected]" value="1" data-price="5.00">
+                        Gluten-Free Muffins - $5.00
+                    </label>
+                    <label>
+                        Quantity:
+                        <input type="number" name="item[bananas][quantity]" value="1" min="1">
+                    </label>
+                </div>
 
-                <label>
-                    <input type="checkbox" name="item[bread][selected]" value="1" data-price="2.00">
-                    Bread - $2.00
-                </label>
-                <label>
-                    Quantity:
-                    <input type="number" name="item[bread][quantity]" value="1" min="1">
-                </label>
+                <div id="non-glutenData" style="display: block;">
+                    <label>
+                        <input type="checkbox" name="item[bananas][selected]" value="1" data-price="2.50">
+                        Tortilla - $2.50
+                    </label>
+                    <label>
+                        Quantity:
+                        <input type="number" name="item[bananas][quantity]" value="1" min="1">
+                    </label>
+                    <label>
+                        <input type="checkbox" name="item[bananas][selected]" value="1" data-price="2.75">
+                        Bread - $2.75
+                    </label>
+                    <label>
+                        Quantity:
+                        <input type="number" name="item[bananas][quantity]" value="1" min="1">
+                    </label>
+                    <label>
+                        <input type="checkbox" name="item[bananas][selected]" value="1" data-price="4.00">
+                        Muffins - $4.00
+                    </label>
+                    <label>
+                        Quantity:
+                        <input type="number" name="item[bananas][quantity]" value="1" min="1">
+                    </label>
+                </div>
 
-                <label>
-                    <input type="checkbox" name="item[tomatoes][selected]" value="1" data-price="2.20">
-                    Tomatoes - $2.20
-                </label>
-                <label>
-                    Quantity:
-                    <input type="number" name="item[tomatoes][quantity]" value="1" min="1">
-                </label>
+                <div id="veggieData" style="display: none;">
+                    <label>
+                        <input type="checkbox" name="item[bananas][selected]" value="1" data-price="5.50">
+                        Tofu - $5.50
+                    </label>
+                    <label>
+                        Quantity:
+                        <input type="number" name="item[bananas][quantity]" value="1" min="1">
+                    </label>
+                    <label>
+                        <input type="checkbox" name="item[bananas][selected]" value="1" data-price="6.00">
+                        Flavoured Tofu Cubes - $6.00
+                    </label>
+                    <label>
+                        Quantity:
+                        <input type="number" name="item[bananas][quantity]" value="1" min="1">
+                    </label>
+                    <label>
+                        <input type="checkbox" name="item[bananas][selected]" value="1" data-price="7.00">
+                        Salad Bowl - $7.00
+                    </label>
+                    <label>
+                        Quantity:
+                        <input type="number" name="item[bananas][quantity]" value="1" min="1">
+                    </label>
+                    <label>
+                        <input type="checkbox" name="item[bananas][selected]" value="1" data-price="8.00">
+                        Acai Bowl - $8.00
+                    </label>
+                    <label>
+                        Quantity:
+                        <input type="number" name="item[bananas][quantity]" value="1" min="1">
+                    </label>
+                </div>
 
-                <label>
-                    <input type="checkbox" name="item[apples][selected]" value="1" data-price="2.50">
-                    Apples - $2.50
-                </label>
-                <label>
-                    Quantity:
-                    <input type="number" name="item[apples][quantity]" value="1" min="1">
-                </label>
-
-                <label>
-                    <input type="checkbox" name="item[eggs][selected]" value="1" data-price="2.75">
-                    Eggs - $2.75
-                </label>
-                <label>
-                    Quantity:
-                    <input type="number" name="item[eggs][quantity]" value="1" min="1">
-                </label>
-
-                <label>
-                    <input type="checkbox" name="item[orange-juice][selected]" value="1" data-price="3.25">
-                    Orange Juice - $3.25
-                </label>
-                <label>
-                    Quantity:
-                    <input type="number" name="item[orange-juice][quantity]" value="1" min="1">
-                </label>
-
-                <label>
-                    <input type="checkbox" name="item[milk][selected]" value="1" data-price="3.50">
-                    Milk - $3.50
-                </label>
-                <label>
-                    Quantity:
-                    <input type="number" name="item[milk][quantity]" value="1" min="1">
-                </label>
-
-                <label>
-                    <input type="checkbox" name="item[cheese][selected]" value="1" data-price="4.50">
-                    Cheese - $4.50
-                </label>
-                <label>
-                    Quantity:
-                    <input type="number" name="item[cheese][quantity]" value="1" min="1">
-                </label>
-
-                <label>
-                    <input type="checkbox" name="item[chicken][selected]" value="1" data-price="7.00">
-                    Chicken - $7.00
-                </label>
-                <label>
-                    Quantity:
-                    <input type="number" name="item[chicken][quantity]" value="1" min="1">
-                </label>
+                <div id="non-veggieData" style="display: block;">
+                    <label>
+                        <input type="checkbox" name="item[bananas][selected]" value="1" data-price="5.50">
+                        Chicken Thighs - $5.50
+                    </label>
+                    <label>
+                        Quantity:
+                        <input type="number" name="item[bananas][quantity]" value="1" min="1">
+                    </label>
+                    <label>
+                        <input type="checkbox" name="item[bananas][selected]" value="1" data-price="6.00">
+                        Chicken Breast - $6.00
+                    </label>
+                    <label>
+                        Quantity:
+                        <input type="number" name="item[bananas][quantity]" value="1" min="1">
+                    </label>
+                    <label>
+                        <input type="checkbox" name="item[bananas][selected]" value="1" data-price="7.00">
+                        Ground Beef - $7.00
+                    </label>
+                    <label>
+                        Quantity:
+                        <input type="number" name="item[bananas][quantity]" value="1" min="1">
+                    </label>
+                    <label>
+                        <input type="checkbox" name="item[bananas][selected]" value="1" data-price="8.00">
+                        Steak - $8.00
+                    </label>
+                    <label>
+                        Quantity:
+                        <input type="number" name="item[bananas][quantity]" value="1" min="1">
+                    </label>
+                </div>
 
                 <br>
 
-                <input type="submit" value="Add to cart">
+                <input type="submit" value="Add to cart" id="button2" onclick="showSection('section3')">
             </form>
 
         </section>
@@ -165,6 +247,10 @@
             </div>
 
         </section>
+
+        <footer>
+            Designed by Saad Mazhar (300249820), Justin Bushfield (300188318), and Oscar Law (300306180)
+        </footer>
 
     </body>
 </html>
