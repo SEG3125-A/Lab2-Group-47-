@@ -1,3 +1,19 @@
+function generateItems(category, items, prices) {
+    for (var i = 0; i < items.length; i++) {
+        // Create item with info
+        document.write(`
+            <label>
+                <input type="checkbox" name="item[${category}][${items[i]}][selected]" value="1" data-price="${prices[i]}">
+                ${category} ${items[i]} - $${parseFloat(prices[i]).toFixed(2)}
+            </label>
+            <label>
+                Quantity:
+                <input type="number" name="item[${category}][${items[i]}][quantity]" value="1" min="1">
+            </label>
+        `);
+    }
+}
+
 function showSection(sectionId) {
     // Hide all sections
     document.querySelectorAll('section').forEach(function(section) {
@@ -10,10 +26,9 @@ function showSection(sectionId) {
 
 document.addEventListener('DOMContentLoaded', function () {
 
-    var button1 = document.getElementById('button1');
+    var submitButton = document.getElementById('submitButton');
+    var addToCartButton = document.getElementById('addToCartButton');
 
-
-    var groceryForm = document.getElementById('groceryForm');
     var shoppingCartBody = document.getElementById('shoppingCartBody');
     var totalElement = document.querySelector('.total p');
 
@@ -22,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var organic = document.querySelector('input[name="organic"]');
 
 
-    button1.addEventListener('click', function () {
+    submitButton.addEventListener('click', function () {
 
         if (organic.checked)
         {
@@ -56,38 +71,55 @@ document.addEventListener('DOMContentLoaded', function () {
 
     });
 
+    addToCartButton.addEventListener('click', function () {
 
-    groceryForm.addEventListener('submit', function (event) {
-        event.preventDefault();
-
-        var formElements = groceryForm.elements;
-        var totalCost = 0;
+        var formElements = document.getElementById('groceryForm').elements;
         var cartItems = [];
-
+    
         for (var i = 0; i < formElements.length; i++) {
             var element = formElements[i];
-
+    
             if (element.type === 'checkbox' && element.checked) {
-                var itemName = element.name.replace("item[", "").replace("][selected]", "");
+                var itemName = element.name.replace("item[", "").replace("][", " ").replace("][selected]", "");
                 var quantity = parseInt(formElements[element.name.replace("[selected]", "[quantity]")].value, 10);
                 var price = parseFloat(element.getAttribute('data-price'));
                 var itemCost = quantity * price;
-
+    
                 cartItems.push({
                     name: itemName,
                     quantity: quantity,
                     price: price,
                     itemCost: itemCost
                 });
-
-                totalCost += itemCost;
             }
         }
 
+        // Clear the table before updating
+        clearCartTable();
+    
+        // Update the cart table with the new items
         updateCartTable(cartItems);
-        updateTotalCost(totalCost);
+    
+        // Update the total cost
+        updateTotalCost(calculateTotalCost(cartItems));
+    
+        // Switch to the Cart section
+        showSection('section3');
     });
-
+    
+    // Clear the cart table
+    function clearCartTable() {
+        var shoppingCartBody = document.getElementById('shoppingCartBody');
+        shoppingCartBody.innerHTML = '';
+    }
+    
+    // Calculate the total cost based on the cart items
+    function calculateTotalCost(cartItems) {
+        return cartItems.reduce(function (total, item) {
+            return total + item.itemCost;
+        }, 0);
+    }
+    
     function updateCartTable(cartItems) {
 
         cartItems.forEach(function (item) {
@@ -95,10 +127,12 @@ document.addEventListener('DOMContentLoaded', function () {
             var cell1 = row.insertCell(0);
             var cell2 = row.insertCell(1);
             var cell3 = row.insertCell(2);
+            var cell4 = row.insertCell(3);
 
             cell1.textContent = item.name;
             cell2.textContent = item.quantity;
             cell3.textContent = '$' + item.price.toFixed(2);
+            cell4.textContent = '$' + (item.price * item.quantity).toFixed(2);
         });
     }
 

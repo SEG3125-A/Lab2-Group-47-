@@ -16,7 +16,7 @@
         <nav>
             <a href="#" onclick="showSection('section1')">Customer</a>
             <a href="#" onclick="showSection('section2')">Products</a>
-            <a href="#" onclick="showSection('section3'); displayCart();">Cart</a>
+            <a href="#" onclick="showSection('section3')">Cart</a>
         </nav>
 
         <section id="section1">
@@ -34,7 +34,7 @@
             </label>
 
             <br>
-            <input type="submit" value="Submit" id="button1" onclick="showSection('section2')">
+            <button type="button" id="submitButton" onclick="showSection('section2')" class = "styled-button">Submit</button>
         </section>
 
         <section id="section2">
@@ -42,188 +42,40 @@
 
             <form id="groceryForm">
                 <h2>Select Grocery Items:</h2>
-                
-                <div id="organicData" style="display: none;">
-                    <label>
-                        <input type="checkbox" name="item[bananas][selected]" value="1" data-price="1.50">
-                        Organic Bananas - $1.50
-                    </label>
-                    <label>
-                        Quantity:
-                        <input type="number" name="item[bananas][quantity]" value="1" min="1">
-                    </label>
-                    <label>
-                        <input type="checkbox" name="item[bananas][selected]" value="1" data-price="1.90">
-                        Organic Apples - $1.90
-                    </label>
-                    <label>
-                        Quantity:
-                        <input type="number" name="item[bananas][quantity]" value="1" min="1">
-                    </label>
-                    <label>
-                        <input type="checkbox" name="item[bananas][selected]" value="1" data-price="2.20">
-                        Organic Grapes - $2.20
-                    </label>
-                    <label>
-                        Quantity:
-                        <input type="number" name="item[bananas][quantity]" value="1" min="1">
-                    </label>
+            
+                <!-- Organic Data -->
+                <div class="item-category" id="organicData" style="display: none;">
+                    <script>generateItems('Organic', ['Bananas', 'Apples', 'Grapes'], [1.50, 1.90, 2.20]);</script>
                 </div>
-
-                <div id="non-organicData" style="display: block;">
-                    <label>
-                        <input type="checkbox" name="item[bananas][selected]" value="1" data-price="1.20">
-                        Bananas - $1.20
-                    </label>
-                    <label>
-                        Quantity:
-                        <input type="number" name="item[bananas][quantity]" value="1" min="1">
-                    <label>
-                    </label>
-                        <input type="checkbox" name="item[bananas][selected]" value="1" data-price="1.60">
-                        Apples - $1.60
-                    </label>
-                    <label>
-                        Quantity:
-                        <input type="number" name="item[bananas][quantity]" value="1" min="1">
-                    </label>
-                    <label>
-                        <input type="checkbox" name="item[bananas][selected]" value="1" data-price="2.00">
-                        Grapes - $2.00
-                    </label>
-                    <label>
-                        Quantity:
-                        <input type="number" name="item[bananas][quantity]" value="1" min="1">
-                    </label>
+            
+                <!-- Non-organic Data -->
+                <div class="item-category" id="non-organicData" style="display: block;">
+                    <script>generateItems('Non-organic', ['Bananas', 'Apples', 'Grapes'], [1.20, 1.60, 2.00]);</script>
                 </div>
-
-                <div id="glutenData" style="display: none;">
-                    <label>
-                        <input type="checkbox" name="item[bananas][selected]" value="1" data-price="2.50">
-                        Gluten-Free Tortilla - $2.50
-                    </label>
-                    <label>
-                        Quantity:
-                        <input type="number" name="item[bananas][quantity]" value="1" min="1">
-                    </label>
-                    <label>
-                        <input type="checkbox" name="item[bananas][selected]" value="1" data-price="3.00">
-                        Gluten-Free Bread - $3.00
-                    </label>
-                    <label>
-                        Quantity:
-                        <input type="number" name="item[bananas][quantity]" value="1" min="1">
-                    </label>
-                    <label>
-                        <input type="checkbox" name="item[bananas][selected]" value="1" data-price="5.00">
-                        Gluten-Free Muffins - $5.00
-                    </label>
-                    <label>
-                        Quantity:
-                        <input type="number" name="item[bananas][quantity]" value="1" min="1">
-                    </label>
+            
+                <!-- Gluten Data -->
+                <div class="item-category" id="glutenData" style="display: none;">
+                    <script>generateItems('Gluten', ['Tortilla', 'Bread', 'Muffins'], [2.50, 3.00, 5.00]);</script>
                 </div>
-
-                <div id="non-glutenData" style="display: block;">
-                    <label>
-                        <input type="checkbox" name="item[bananas][selected]" value="1" data-price="2.50">
-                        Tortilla - $2.50
-                    </label>
-                    <label>
-                        Quantity:
-                        <input type="number" name="item[bananas][quantity]" value="1" min="1">
-                    </label>
-                    <label>
-                        <input type="checkbox" name="item[bananas][selected]" value="1" data-price="2.75">
-                        Bread - $2.75
-                    </label>
-                    <label>
-                        Quantity:
-                        <input type="number" name="item[bananas][quantity]" value="1" min="1">
-                    </label>
-                    <label>
-                        <input type="checkbox" name="item[bananas][selected]" value="1" data-price="4.00">
-                        Muffins - $4.00
-                    </label>
-                    <label>
-                        Quantity:
-                        <input type="number" name="item[bananas][quantity]" value="1" min="1">
-                    </label>
+            
+                <!-- Non-gluten Data -->
+                <div class="item-category" id="non-glutenData" style="display: block;">
+                    <script>generateItems('Non-gluten', ['Tortilla', 'Bread', 'Muffins'], [2.50, 2.75, 4.00]);</script>
                 </div>
-
-                <div id="veggieData" style="display: none;">
-                    <label>
-                        <input type="checkbox" name="item[bananas][selected]" value="1" data-price="5.50">
-                        Tofu - $5.50
-                    </label>
-                    <label>
-                        Quantity:
-                        <input type="number" name="item[bananas][quantity]" value="1" min="1">
-                    </label>
-                    <label>
-                        <input type="checkbox" name="item[bananas][selected]" value="1" data-price="6.00">
-                        Flavoured Tofu Cubes - $6.00
-                    </label>
-                    <label>
-                        Quantity:
-                        <input type="number" name="item[bananas][quantity]" value="1" min="1">
-                    </label>
-                    <label>
-                        <input type="checkbox" name="item[bananas][selected]" value="1" data-price="7.00">
-                        Salad Bowl - $7.00
-                    </label>
-                    <label>
-                        Quantity:
-                        <input type="number" name="item[bananas][quantity]" value="1" min="1">
-                    </label>
-                    <label>
-                        <input type="checkbox" name="item[bananas][selected]" value="1" data-price="8.00">
-                        Acai Bowl - $8.00
-                    </label>
-                    <label>
-                        Quantity:
-                        <input type="number" name="item[bananas][quantity]" value="1" min="1">
-                    </label>
+            
+                <!-- Veggie Data -->
+                <div class="item-category" id="veggieData" style="display: none;">
+                    <script>generateItems('Veggie', ['Tofu', 'Flavoured Tofu Cubes', 'Salad Bowl', 'Acai Bowl'], [5.50, 6.00, 7.00, 8.00]);</script>
                 </div>
-
-                <div id="non-veggieData" style="display: block;">
-                    <label>
-                        <input type="checkbox" name="item[bananas][selected]" value="1" data-price="5.50">
-                        Chicken Thighs - $5.50
-                    </label>
-                    <label>
-                        Quantity:
-                        <input type="number" name="item[bananas][quantity]" value="1" min="1">
-                    </label>
-                    <label>
-                        <input type="checkbox" name="item[bananas][selected]" value="1" data-price="6.00">
-                        Chicken Breast - $6.00
-                    </label>
-                    <label>
-                        Quantity:
-                        <input type="number" name="item[bananas][quantity]" value="1" min="1">
-                    </label>
-                    <label>
-                        <input type="checkbox" name="item[bananas][selected]" value="1" data-price="7.00">
-                        Ground Beef - $7.00
-                    </label>
-                    <label>
-                        Quantity:
-                        <input type="number" name="item[bananas][quantity]" value="1" min="1">
-                    </label>
-                    <label>
-                        <input type="checkbox" name="item[bananas][selected]" value="1" data-price="8.00">
-                        Steak - $8.00
-                    </label>
-                    <label>
-                        Quantity:
-                        <input type="number" name="item[bananas][quantity]" value="1" min="1">
-                    </label>
+            
+                <!-- Non-veggie Data -->
+                <div class="item-category" id="non-veggieData" style="display: block;">
+                    <script>generateItems('Non-veggie', ['Chicken Thighs', 'Chicken Breast', 'Ground Beef', 'Steak'], [5.50, 6.00, 7.00, 8.00]);</script>
                 </div>
-
+            
                 <br>
-
-                <input type="submit" value="Add to cart" id="button2" onclick="showSection('section3')">
+            
+                <button type="button" id="addToCartButton" onclick="addToCart()" class = "styled-button">Add to cart</button>
             </form>
 
         </section>
@@ -236,7 +88,8 @@
                     <tr>
                         <th>Item</th>
                         <th>Quantity</th>
-                        <th>Price</th>
+                        <th>Unit Price</th>
+                        <th>Batch Price</th>
                     </tr>
                 </thead>
                 <tbody id="shoppingCartBody"></tbody>

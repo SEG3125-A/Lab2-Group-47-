@@ -97,6 +97,7 @@ select, input[type="submit"] {
     margin-bottom: 15px;
 }
 
+/*
 input[type="submit"] {
     background-color: #3498db;
     color: #fff;
@@ -107,6 +108,7 @@ input[type="submit"] {
 input[type="submit"]:hover {
     background-color: #2980b9;
 }
+*/
 
 /* Responsive styles */
 @media screen and (max-width: 600px) {
@@ -145,3 +147,19 @@ th {
     display: block;
 }
 
+#section2{
+    padding-bottom: 2%;
+}
+
+.styled-button {
+    background-color: #3498db; 
+    color: white;
+    padding: 10px 20px; 
+    border: none;
+    border-radius: 5px; 
+    cursor: pointer; 
+}
+
+.styled-button:hover {
+    background-color: #2980b9;
+}
