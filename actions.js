@@ -1,6 +1,7 @@
 function generateItems(category, items, prices) {
+    //Potential failure point: should take a list of lists, not 3 arrays. That way we could sort based on price before rendering to user. Not critical however.
     for (var i = 0; i < items.length; i++) {
-        // Create item with info
+        // Create item with info and write it to the DOM
         document.write(`
             <label>
                 <input type="checkbox" name="item[${category}][${items[i]}][selected]" value="1" data-price="${prices[i]}">
